@@ -13,10 +13,19 @@ import { StorageBrowser } from '@aws-amplify/ui-react-storage';
  * @type {import('aws-amplify/data').Client<import('../amplify/data/resource').Schema>}
  */
 
-Amplify.configure(outputs);
+// Amplify.configure(outputs);
 
-const client = generateClient({
-  authMode: 'userPool',
+// const client = generateClient({
+//   authMode: 'userPool',
+// });
+Amplify.configure({
+  Auth: {
+    region: process.env.REACT_APP_COGNITO_REGION,
+    userPoolId: process.env.REACT_APP_COGNITO_USER_POOL_ID,
+    userPoolWebClientId: process.env.REACT_APP_COGNITO_USER_POOL_CLIENT_ID,
+    identityPoolId: process.env.REACT_APP_COGNITO_IDENTITY_POOL_ID,
+    oauth: {} // ✅ Add this line to prevent runtime error
+  }
 });
 
 export default function App() {
