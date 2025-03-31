@@ -18,15 +18,10 @@ import { StorageBrowser } from '@aws-amplify/ui-react-storage';
 // const client = generateClient({
 //   authMode: 'userPool',
 // });
-Amplify.configure({
-  Auth: {
-    region: process.env.REACT_APP_COGNITO_REGION,
-    userPoolId: process.env.REACT_APP_COGNITO_USER_POOL_ID,
-    userPoolWebClientId: process.env.REACT_APP_COGNITO_USER_POOL_CLIENT_ID,
-    identityPoolId: process.env.REACT_APP_COGNITO_IDENTITY_POOL_ID,
-    oauth: {} // ✅ Add this line to prevent runtime error
-  }
-});
+Amplify.configure(outputs);
+
+const client = generateClient({
+  authMode: 'userPool',
 
 export default function App() {
   return (
